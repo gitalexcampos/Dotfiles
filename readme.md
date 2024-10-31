@@ -1,1 +1,1 @@
-sudo pacman -S mpstat
+sudo pacman -S mpstat network-manager-applet redshift
