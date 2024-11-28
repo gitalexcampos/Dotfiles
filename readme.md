@@ -13,4 +13,8 @@ yay -S lazydocker dracula-gtk-theme kora-icon-theme spotify dropbox appimagelaun
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
+## install PowerLevel10k
+
+yay -S --noconfirm zsh-theme-powerlevel10k-git
+echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
                                                            |
