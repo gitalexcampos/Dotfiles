@@ -4,3 +4,5 @@ padding = { x = 5, y = 5 }
 
 [colors]
 transparent_background_colors = true
+
+

@@ -19,9 +19,11 @@ polybar -c ~/.config/polybar/forest/config.ini &
 polybar -c ~/.config/polybar/forest/config2.ini &
 dropbox &
 picom --backend xrender &
-redshift -l -22.1175:-45.0517
+redshift -l -22.1175:-45.0517 &
+xautolock -time 10 -locker "betterlockscreen -l" -detectsleep &
 
 bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a galculator state=floating
 bspc rule -a Chromium desktop='^2'
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
