@@ -2,10 +2,14 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-~/.screenlayout/display.sh
-
-bspc monitor eDP-1  -d I
-bspc monitor HDMI-1-0  -d II III IV
+if [[ $(xrandr -q | grep "HDMI-1-0 connected") ]];
+then
+  ~/.screenlayout/display.sh
+  bspc monitor eDP-1  -d I
+  bspc monitor HDMI-1-0  -d II III IV
+else
+  bspc monitor -d I II III IV
+fi
 
 bspc config border_width         1
 bspc config window_gap           8
@@ -14,17 +18,22 @@ bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
+killall wallpaper.sh
+while pgrep -u $UID -x wallpaper.sh >/dev/null; do sleep 1; done
 ~/.config/scripts/wallpaper.sh &
-polybar -c ~/.config/polybar/forest/config.ini &
-polybar -c ~/.config/polybar/forest/config2.ini &
+
+MONITOR="HDMI-1-0" ~/.config/polybar/launch.sh  &
+MONITOR="eDP-1" ~/.config/polybar/launch.sh  &
 dropbox &
 picom --backend xrender &
+
+# Terminate already running bar instances
+killall -q redshift
+# Wait until the processes have been shut down
+while pgrep -u $UID -x redshift >/dev/null; do sleep 1; done
 redshift -l -22.1175:-45.0517 &
+
 xautolock -time 10 -locker "betterlockscreen -l" -detectsleep &
 
-bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a galculator state=floating
-bspc rule -a Chromium desktop='^2'
 bspc rule -a mplayer2 state=floating
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off

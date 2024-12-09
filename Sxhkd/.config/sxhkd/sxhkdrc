@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + @space
-	~/.config/polybar/forest/scripts/launcher.sh
+	~/.config/polybar/scripts/launcher.sh
 
 # launch vivaldi
 super + w
@@ -28,18 +28,17 @@ super + Escape
 
 # PrintScreen
 super + p
-        scrot -s ~'/Pictures/%Y-%m-%d_%H-%M-%S_screenshot.png'
+        scrot -s ~'/Pictures/%Y-%m-%d_%H-%M-%S_screenshot.png' && notify-send "PrintScreen Make. File in ~/Pictures"
 
 super + o
-        scrot -s -d 5 ~'/Pictures/%Y-%m-%d_%H-%M-%S_screenshot.png'
+        scrot -s -d 5 ~'/Pictures/%Y-%m-%d_%H-%M-%S_screenshot.png' && notify-send "PrintScreen Make. File in ~/Pictures"
 
 # Record Screen
 super + P
-        ffmpeg -f x11grab -video_size 1920x1080 -framerate 25 -i $DISPLAY -f alsa -i default -c:v libx264 -preset ultrafast -c:a aac ~"/Videos/screen_$(date +\%Y-\%m-\%d_\%H-\%M-\%S).mp4"
-
+        notify-send  "Recording Screen" && ffmpeg -f x11grab -video_size 1920x1080 -framerate 25 -i $DISPLAY -f alsa -i default -c:v libx264 -preset ultrafast -c:a aac ~"/Videos/screen_$(date +\%Y-\%m-\%d_\%H-\%M-\%S).mp4"
+        
 super + O
-        pkill ffmpeg
-
+        pkill ffmpeg && notify-send "Recording finished. File: ~/Videos/scree_$(date +\%Y-\%m-\%d_\%H-\%M-\%S).mp4"
 
 # Music
 super + m

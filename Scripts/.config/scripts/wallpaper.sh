@@ -16,6 +16,8 @@ path=~/Wallpapers
 interval=15m
 
 #===change these config end===
+~/.config/scripts/bing.sh
+while pgrep -u $UID -x bing.sh >/dev/null; do sleep 1; done
 
 cd $path
 
